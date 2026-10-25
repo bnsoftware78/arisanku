@@ -302,8 +302,13 @@ const A=window.A={sq:v=>{q=v;$('#at').innerHTML=arows();lab()},close:()=>$('#mo'
    const key=a=>String(a.nama||'').trim().toLowerCase()+'|'+String(a.hp||'').replace(/\D/g,''),have=new Set(D.A.map(key)),
     baru=ALL.A.filter(x=>x.gid==v.src&&x.aktif!==false).sort((x,y)=>(x.urutan||0)-(y.urutan||0)).filter(x=>!have.has(key(x)));
    if(!baru.length)return msg('Semua anggota arisan itu sudah ada di sini');
+   A.salinPilih(baru)})},
+ salinPilih:baru=>{
+  $('#mo').innerHTML=`<div class="box"><h3>Pilih anggota yang disalin</h3><p class="note">${baru.length} anggota bisa disalin. Centang yang ikut arisan ini.</p><div class="actions" style="margin:0 0 6px"><button type="button" class="linkbtn" data-act="salinSemua" data-id="1">Pilih semua</button><button type="button" class="linkbtn" data-act="salinSemua" data-id="0">Kosongkan</button></div><ul class="blist" id="sl">${baru.map((x,i)=>`<li><label style="display:flex;align-items:center;gap:10px;margin:0;flex:1;color:var(--ink);font-size:13px"><input type="checkbox" value="${i}" checked style="width:auto;margin:0;display:inline-block;flex:none"><span>${esc(x.nama)}<small>${esc(x.hp||'-')}</small></span></label></li>`).join('')}</ul><div class="actions"><button type="button" class="secondary" data-act="close">Batal</button><button type="button" class="primary" id="sy">Salin yang dicentang</button></div></div>`;$('#mo').classList.add('on');
+  $('#sy').onclick=()=>{const pick=[...document.querySelectorAll('#sl input:checked')].map(c=>baru[+c.value]);if(!pick.length)return msg('Centang minimal satu anggota');A.close();
    let u=Math.max(0,...D.A.map(a=>a.urutan||0));const now=new Date().toISOString();
-   run(()=>sbo(sb.from('anggota').insert(baru.map(x=>({...base(),nama:x.nama,hp:x.hp||'',token:tok(),urutan:++u,aktif:true,at:now})))),baru.length+' anggota disalin (tiap anggota dapat tautan baru)')})},
+   run(()=>sbo(sb.from('anggota').insert(pick.map(x=>({...base(),nama:x.nama,hp:x.hp||'',token:tok(),urutan:++u,aktif:true,at:now})))),pick.length+' anggota disalin (tiap anggota dapat tautan baru)')}},
+ salinSemua:v=>document.querySelectorAll('#sl input').forEach(c=>{c.checked=v=='1'}),
  catW:id=>{const x=D.W.find(w=>w.id==id);if(!x)return;const t=prompt('Catatan untuk putaran ke-'+x.p+' (kosongkan untuk menghapus):',x.catatan||'');if(t===null)return;run(()=>upd('undian',id,{...base(),catatan:t.trim().slice(0,500)}),'Catatan disimpan')},
  pickImg:k=>{const f=$('#f_'+k);if(!f)return;f.onchange=()=>{const fl=f.files[0];f.value='';if(fl)A.setImg(k,fl)};f.click()},
  setImg:(k,file)=>{if(!/^image\/(png|jpeg|webp)$/.test(file.type))return msg('Pilih gambar PNG, JPG, atau WebP');if(file.size>8e6)return msg('Ukuran gambar maksimal 8 MB');
