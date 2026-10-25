@@ -56,6 +56,24 @@ input:focus,select:focus{outline:2px solid #0d5b4c55;border-color:var(--green)}i
 .lower{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.9fr);gap:18px}
 .win{display:flex;gap:14px;align-items:center;background:linear-gradient(135deg,#fff7e6,#fff);border:1px solid #f1dcae;border-radius:16px;padding:16px 18px;margin-bottom:17px}.win .t{font:700 24px var(--serif)}
 .spin{font:700 40px var(--serif);text-align:center;padding:26px 8px;color:var(--green);min-height:96px}.proof{max-width:100%;border-radius:12px;display:block;margin:auto}
+/* ===== Kredit pembuat aplikasi ===== */
+.by{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;font-size:11px;color:#7a8aa8}
+.by img{width:26px;height:26px;object-fit:contain;border-radius:6px;background:#fff;flex:none}.by b{color:#0b1f4d}
+.sidebar .by{margin-top:12px;background:#fff;border-radius:12px;padding:7px 10px;justify-content:flex-start;color:#62749a}
+.by.mob{display:none;margin:0 0 0 10px}
+/* ===== Tema Panel Penjual: biru + oranye, pola kubus isometrik 3D ===== */
+body.own{--green:#1456d6;--deep:#0a3a9c;--gold:#ff8a00;--gold2:#ffb54d;--mint:#e6f1ff;--ink:#0b1f4d;--muted:#62749a;--line:#dbe6f7;--shadow:0 4px 0 #cfe0fa,0 18px 28px -18px #1456d655;background:#f4f8ff;
+--pat:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='52' height='90' viewBox='0 0 52 90'><g stroke='%23ffffff' stroke-opacity='.16' fill='none'><path d='M26 0l26 15v30L26 60 0 45V15zM0 15l26 15 26-15M26 30v30'/><path transform='translate(-26 45)' d='M26 0l26 15v30L26 60 0 45V15zM0 15l26 15 26-15M26 30v30'/><path transform='translate(26 45)' d='M26 0l26 15v30L26 60 0 45V15zM0 15l26 15 26-15M26 30v30'/></g><g fill='%23ff8a00' fill-opacity='.2'><path d='M26 0l26 15-26 15L0 15z'/><path transform='translate(26 45)' d='M26 0l26 15-26 15L0 15z'/></g></svg>")}
+.own .sidebar{background-color:#06245f;background-image:var(--pat),linear-gradient(180deg,#0a3a9c,#06245f);background-size:52px 90px,auto;color:#e6f1ff}
+.own .nav a{color:#c9dbfb}.own .navlabel,.own .brandmark{color:#ffb54d}.own .sidebottom small{color:#a9c3f0}.own .avatar{color:#fff}
+.own .welcome h1,.own .statval{color:#0b1f4d}.own .topbar{background:#ffffffe6}
+.own th{background:#f2f7ff;color:#6b7fa8}.own td{border-bottom-color:#e9f0fb}.own tbody tr:hover{background:#f4f8ff}.own td a{color:#1456d6;font-weight:600;text-decoration:none}
+.own .miniava{background:#e6f1ff;color:#1456d6}.own .amount{color:#0a3a9c}
+.own .primary{background:linear-gradient(180deg,#2f74f0,#1456d6);border-radius:12px;box-shadow:0 4px 0 #0a3a9c,0 14px 22px -10px #1456d680;transition:transform .08s,box-shadow .08s}.own .primary:active{transform:translateY(3px);box-shadow:0 1px 0 #0a3a9c}
+.own .gold{background:linear-gradient(180deg,#ffa63d,#ff8a00);color:#fff;box-shadow:0 4px 0 #c96a00,0 14px 22px -10px #ff8a0080}
+.own .secondary{border-color:#cfe0fa;color:#1456d6;box-shadow:0 2px 0 #cfe0fa}.own .linkbtn{color:#1456d6}.own .linkbtn.danger,.own .danger{color:#e5484d}
+.own .hero{background-size:auto;box-shadow:0 8px 0 #0a3a9c55,0 22px 44px -22px #0a3a9c}.own .hero:before{background-size:52px 90px}.own .hero p{color:#cfe0fa}.own .chip{color:#eaf2ff}
+.own .isoart{width:160px;height:130px;border-radius:20px;background:linear-gradient(165deg,#e6f1ff,#fff);padding:6px;display:grid;place-items:center;box-shadow:0 6px 0 #0a3a9c88}.own .isoart img{max-width:100%;max-height:100%;mix-blend-mode:multiply}
 /* ===== Layar login: modern, biru + oranye, ilustrasi isometrik 3D ===== */
 #lg{display:none;position:fixed;inset:0;z-index:60;align-items:center;justify-content:center;padding:20px;overflow:auto;--b:#1456d6;--b2:#0a3a9c;--o:#ff8a00;background:radial-gradient(900px 500px at 10% 0%,#dbeaff,transparent 60%),radial-gradient(700px 500px at 100% 100%,#ffe9cc,transparent 60%),#f4f8ff}
 .lgwrap{display:grid;grid-template-columns:1.05fr .95fr;width:100%;max-width:1020px;min-height:580px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 44px 80px -34px #1456d68c,0 10px 28px -12px #0a3a9c40}
@@ -88,14 +106,16 @@ html,body{overflow-x:hidden}.app{display:block}.sidebar{position:fixed;left:0;ri
 .tablewrap{overflow:visible}table,thead,tbody,tr,td{display:block;width:100%}table{white-space:normal}thead{display:none}tbody tr{border:1px solid var(--line);border-radius:14px;padding:4px 14px;margin-bottom:10px;background:#fff}
 td{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:9px 0;border-bottom:1px dashed #e6eee9!important;text-align:right;white-space:normal}td:before{content:attr(data-label);flex:none;max-width:40%;text-align:left;color:var(--muted);font-size:11px}td[data-label=""]:before{display:none}td[data-label=""]{flex-wrap:wrap;justify-content:flex-start}td:last-child{border-bottom:0!important}
 .linkbtn{padding:8px 11px;border-radius:9px;background:#f1f7f4;font-size:12px}.person{text-align:left}#lg{align-items:flex-start}}
+@media(max-width:760px){.own .sidebar{background:var(--deep);background-image:none}.own .isoart{display:none}.sidebar .by{display:none}.by.mob{display:flex}.by.mob span{display:none}.topbar .gwrap{display:flex;align-items:center}}
 </style>
 </head>
 <body>
 <div class="app"><aside class="sidebar"><div class="brand"><div class="brandmark">◈</div><div><strong id="bn">Arisan</strong><small id="bt">DASHBOARD</small></div></div>
 <div class="navlabel">Menu utama</div><nav class="nav" id="n1"></nav><div class="navlabel">Kelola</div><nav class="nav" id="n2"></nav>
 <nav class="nav" style="margin-top:14px"><a href="#" data-act="out"><span class="ico">⎋</span><span>Keluar</span></a></nav>
-<div class="sidebottom"><div class="avatar" id="av"></div><div><b id="an"></b><small>Admin arisan</small></div></div></aside>
-<main class="main"><header class="topbar"><div class="crumb">Halaman utama &nbsp;›&nbsp; <b id="cr"></b></div><div id="gsel"></div></header><div class="content" id="view"></div></main></div>
+<div class="sidebottom"><div class="avatar" id="av"></div><div><b id="an"></b><small>Admin arisan</small></div></div>
+<div class="by"><img src="logo-bnsoftware.webp" alt="BN Software" onerror="this.style.display='none'"><span>Dibuat oleh <b>BN Software</b></span></div></aside>
+<main class="main"><header class="topbar"><div class="crumb">Halaman utama &nbsp;›&nbsp; <b id="cr"></b></div><div class="gwrap"><div id="gsel"></div><div class="by mob"><img src="logo-bnsoftware.webp" alt="BN Software" onerror="this.style.display='none'"></div></div></header><div class="content" id="view"></div></main></div>
 <div id="lg"></div><div class="toast" id="toast"></div><div class="mo" id="mo"></div>
 
 <script type="module">
@@ -145,7 +165,7 @@ const link=m=>{const u=new URL('anggota.html',location.href);u.searchParams.set(
 const per=()=>D.g.periode=='mingguan'?'minggu':'bulan';
 
 function theme(){const g=D.g,w=/^#[0-9a-f]{6}$/i.test(g.warna||'')?g.warna:'#0d5b4c',r=document.documentElement.style;r.setProperty('--green',w);r.setProperty('--deep',dark(w,.62));
- document.title=g.nama+' — Dashboard Arisan';$('#bn').textContent=g.nama;$('#bt').textContent=(g.periode=='mingguan'?'ARISAN MINGGUAN':'ARISAN BULANAN');$('#av').textContent=ini(g.admin||U.email);$('#an').textContent=g.admin||U.email;
+ document.title=g.nama+' — Dashboard Arisan';$('#bn').textContent=g.nama;$('#bt').textContent=IS_OWNER?'PANEL PENJUAL':(g.periode=='mingguan'?'ARISAN MINGGUAN':'ARISAN BULANAN');$('#av').textContent=ini(g.admin||U.email);$('#an').textContent=g.admin||U.email;
  if(IS_OWNER){$('#gsel').innerHTML='<span class="note">Mode penjual</span>';return}
  $('#gsel').innerHTML=G.length>1?`<select onchange="A.pilihGrup(this.value)">${G.map(x=>`<option value="${x.id}" ${x.id==GID?'selected':''}>${esc(x.nama)}</option>`).join('')}</select>`:`<span class="note">${esc(g.nama)}</span>`;
  if(PJ&&PJ.sampai){const dl=Math.ceil((new Date(PJ.sampai)-new Date())/864e5);$('#gsel').insertAdjacentHTML('beforeend',` <span class="status ${dl<=7?'late':''}" style="margin-left:8px">aktif ${dl} hari lagi</span>`)}}
@@ -251,7 +271,8 @@ const A=window.A={sq:v=>{q=v;$('#at').innerHTML=arows();lab()},close:()=>$('#mo'
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go],[data-act]');if(!a)return;e.preventDefault();if(a.dataset.go)go(a.dataset.go);else if(A[a.dataset.act])A[a.dataset.act](a.dataset.id)});
 
 /* ===== Login, daftar, buat arisan ===== */
-const lgBox=h=>{const l=$('#lg');l.style.display='flex';l.innerHTML=`<div class="lgwrap"><aside class="lgart"><img class="lgl" src="logo-arisanku.webp" alt="Arisanku"><img class="lgi" src="ilustrasi-arisan.webp" alt=""><p><b>Arisan jadi lebih rapi.</b> Kelola anggota, iuran, dan undian dalam satu tempat.</p></aside><form class="box" id="lf"><img class="lgm" src="logo-arisanku.webp" alt="Arisanku">${h}</form></div>`};
+const BY=`<div class="by"><img src="logo-bnsoftware.webp" alt="BN Software" onerror="this.style.display='none'"><span>Dibuat oleh <b>BN Software</b></span></div>`;
+const lgBox=h=>{const l=$('#lg');l.style.display='flex';l.innerHTML=`<div class="lgwrap"><aside class="lgart"><img class="lgl" src="logo-arisanku.webp" alt="Arisanku"><img class="lgi" src="ilustrasi-arisan.webp" alt=""><p><b>Arisan jadi lebih rapi.</b> Kelola anggota, iuran, dan undian dalam satu tempat.</p></aside><form class="box" id="lf"><img class="lgm" src="logo-arisanku.webp" alt="Arisanku">${h}${BY}</form></div>`};
 function showLogin(m,em,reg,info){lgBox(`<h3>${reg?'Daftar pengurus':'Selamat datang'}</h3><p class="lgsub">${reg?'Buat akun pengurus. Setelah mendaftar, akun diaktifkan oleh penjual.':'Masuk untuk mengelola anggota, iuran, dan undian arisan.'}</p>${m?`<p class="err">${esc(m)}</p>`:''}${info?`<p class="okbox">${esc(info)}</p>`:''}
  ${reg?'<label>Nama pengurus<input name="n" maxlength="60" required></label><label>No. WhatsApp<input name="w" type="tel" maxlength="20" required></label>':''}<label>Email<input name="e" type="email" value="${esc(em||'')}" autocomplete="email" required></label><label>Kata sandi${reg?' (minimal 8 karakter)':''}<input name="p" type="password" ${reg?'minlength="8"':''} autocomplete="${reg?'new-password':'current-password'}" required></label>
  <button class="primary">${reg?'Daftar':'Masuk'}</button>${reg?'':'<p class="note" style="text-align:center;margin:10px 0 0"><a href="#" id="fp">Lupa kata sandi?</a></p>'}<p class="note" style="text-align:center;margin:14px 0 0"><a href="#" id="sw">${reg?'Sudah punya akun? Masuk':'Belum punya akun? Daftar'}</a></p>`);
@@ -287,7 +308,7 @@ async function pjLoad(){const el=$('#pj');if(!el)return;
   const c=k=>PJL.filter(x=>stOf(x)==k).length,soon=PJL.filter(x=>stOf(x)=='aktif'&&dl(x)<=7).length,ym=iso(new Date()).slice(0,7),yy=ym.slice(0,4),sum=f=>LGN.filter(r=>!r.batal&&f(r)).reduce((a,r)=>a+(+r.nominal||0),0);
   const rows=PJL.map(x=>{const s=stOf(x),d=dl(x);return `<tr><td><b>${esc(x.nama||'-')}</b><small style="display:block;color:#8a9a94">${esc(x.email)}</small></td><td><a href="https://wa.me/${wal(x.wa)}" target="_blank" rel="noopener">${esc(x.wa||'-')}</a></td><td><span class="status ${s=='aktif'?'':s=='menunggu'?'pending':'late'}">${s}</span></td><td>${x.sampai?fd(sTgl(x))+`<small style="display:block;margin-top:3px"><span class="status ${d<=7?'late':''}">${d<0?'berakhir '+(-d)+' hari lalu':d==0?'berakhir hari ini':d+' hari lagi'}</span></small>`:'-'}</td><td>${last[x.id]?fd(last[x.id]):'<span class="note">belum pernah</span>'}</td><td><button class="linkbtn" data-act="pjBayar" data-id="${x.id}">＋ Catat bayar</button> <button class="linkbtn" data-act="pjTambah" data-id="${x.id}|7">Trial +7 hari</button> ${s=='aktif'&&d<=7||s=='berakhir'?`<button class="linkbtn" data-act="pjIngat" data-id="${x.id}">Ingatkan</button> `:''}${s!='nonaktif'?`<button class="linkbtn danger" data-act="pjOff" data-id="${x.id}">Nonaktifkan</button>`:''}</td></tr>`}).join('');
   const rw=LGN.slice(0,100).map(r=>`<tr${r.batal?' style="opacity:.5;text-decoration:line-through"':''}><td>${fd(r.tgl)}</td><td><b>${esc(r.nama||'-')}</b>${r.catatan?`<small style="display:block;color:#8a9a94">${esc(r.catatan)}</small>`:''}</td><td>${esc(r.paket)} · ${r.hari} hari</td><td>${esc(r.metode||'-')}</td><td class="amount">${rp(+r.nominal)}</td><td>${r.batal?'<span class="status late">Dibatalkan</span>':`<button class="linkbtn danger" data-act="pjBatal" data-id="${r.id}">Batalkan</button>`}</td></tr>`).join('');
-  el.innerHTML=head('Panel Penjual','Kelola pengurus arisan yang memakai aplikasi Anda')+`<section class="stats">${stat('Menunggu verifikasi',c('menunggu'),'perlu diaktifkan')}${stat('Aktif',c('aktif'),c('berakhir')+' sudah berakhir')}${stat('Segera berakhir',soon,'≤ 7 hari lagi')}${stat('Pendapatan bulan ini',sh(sum(r=>String(r.tgl).startsWith(ym))),'tahun '+yy+': '+sh(sum(r=>String(r.tgl).startsWith(yy))))}</section>
+  el.innerHTML=`<section class="hero"><div><span class="eyebrow">Panel penjual</span><h1>Kelola pengurus arisan</h1><p>Aktifkan akun, catat pembayaran, dan pantau masa aktif semua pengurus yang memakai aplikasi Anda.</p><span class="chip">${c('aktif')} aktif · ${c('menunggu')} menunggu verifikasi</span></div><div class="isoart"><img src="ilustrasi-arisan.webp" alt=""></div></section>`+`<section class="stats">${stat('Menunggu verifikasi',c('menunggu'),'perlu diaktifkan')}${stat('Aktif',c('aktif'),c('berakhir')+' sudah berakhir')}${stat('Segera berakhir',soon,'≤ 7 hari lagi')}${stat('Pendapatan bulan ini',sh(sum(r=>String(r.tgl).startsWith(ym))),'tahun '+yy+': '+sh(sum(r=>String(r.tgl).startsWith(yy))))}</section>
   <div class="card pad"><div class="panelhead"><div><h2>Daftar pengurus</h2><p>${PJL.length} akun · urut dari yang paling perlu ditindak</p></div></div>${tbl(['Pengurus','WhatsApp','Status','Masa aktif','Terakhir bayar','Aksi'],rows)}</div>
   <div class="card pad"><div class="panelhead"><div><h2>Riwayat pembayaran</h2><p>Catat setelah uang benar-benar masuk ke rekening Anda · 100 terakhir</p></div></div>${tbl(['Tanggal','Pengurus','Paket','Metode','Nominal',''],rw)}</div>`;lab()
  }catch(e){el.innerHTML='<div class="card pad"><p class="err">'+esc(mapErr(e)+' — pastikan skema SQL sudah dijalankan dan akun Anda sudah didaftarkan di tabel owners.')+'</p></div>'}}
@@ -303,9 +324,9 @@ Object.assign(A,{
 
 function showNewPass(m){lgBox(`<h3>Kata sandi baru</h3><p class="lgsub">Buat kata sandi baru untuk akun Anda.</p>${m?`<p class="err">${esc(m)}</p>`:''}<label>Kata sandi baru (minimal 8 karakter)<input name="p" type="password" minlength="8" autocomplete="new-password" required></label><button class="primary">Simpan</button>`);
  $('#lf').onsubmit=async ev=>{ev.preventDefault();try{await sbo(sb.auth.updateUser({password:new FormData(ev.target).get('p')}));location.href=location.pathname}catch(x){showNewPass(mapErr(x))}}}
-async function boot(u){U=u?{uid:u.id,email:u.email}:null;if(!u){IS_OWNER=false;PJ=null;showLogin();return}
+async function boot(u){document.body.classList.remove('own');U=u?{uid:u.id,email:u.email}:null;if(!u){IS_OWNER=false;PJ=null;showLogin();return}
  try{const ow=await sbo(sb.from('owners').select('uid').eq('uid',u.id).maybeSingle());
-  if(ow){IS_OWNER=true;D.g={nama:'Panel Penjual',periode:'bulanan',warna:'#0d5b4c',admin:'Penjual'};cur='penjual';$('#lg').style.display='none';render();pjLoad();return}
+  if(ow){IS_OWNER=true;document.body.classList.add('own');D.g={nama:'Panel Penjual',periode:'bulanan',warna:'#1456d6',admin:'Penjual'};cur='penjual';$('#lg').style.display='none';render();pjLoad();return}
   const s=await sbo(sb.from('pengurus').select('*').eq('uid',u.id).maybeSingle());
   if(!s)return showLogin('Profil akun belum terbentuk. Hubungi penjual.');
   PJ=s;const exp=PJ.sampai?new Date(PJ.sampai):null;
