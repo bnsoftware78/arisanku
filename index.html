@@ -210,9 +210,10 @@ async function load(){
 async function syncPortal(){if(!D.g)return;const g=D.g,w=/^#[0-9a-f]{6}$/i.test(g.warna||'')?g.warna:'#0d5b4c',p=pt();
  const und=D.W.map(x=>({p:x.p,nama:x.nama,tgl:x.tgl}));const arr=[];
  for(const m of D.A){const bayar=D.S.filter(x=>x.mid==m.id&&!x.void).map(x=>({p:x.p,v:x.v,tgl:x.tgl,m:x.m,st:x.st})).sort((x,y)=>y.tgl.localeCompare(x.tgl)).slice(0,60),mw=menang(m.id);
-  arr.push({token:m.token,owner:U.uid,gid:GID,mid:m.id,nama:m.nama,grup:g.nama,warna:w,rek:g.rek||'',wa:g.wa||'',iuran:+g.iuran||0,periode:g.periode||'bulanan',putaran:p,jml:D.A.length,pot:pot(),menang:mw?mw.p:null,bayar,undian:und,upd:new Date().toISOString()});
+  arr.push({token:m.token,owner:U.uid,gid:GID,mid:m.id,nama:m.nama,grup:g.nama,warna:w,rek:g.rek||'',wa:g.wa||'',iuran:+g.iuran||0,periode:g.periode||'bulanan',logo:okImg(g.logo)?g.logo:'',putaran:p,jml:D.A.length,pot:pot(),menang:mw?mw.p:null,bayar,undian:und,upd:new Date().toISOString()});
   }
- for(let i=0;i<arr.length;i+=200)await sbo(sb.from('portal').upsert(arr.slice(i,i+200),{onConflict:'token'}))}
+ const up=a=>sbo(sb.from('portal').upsert(a,{onConflict:'token'}));
+ for(let i=0;i<arr.length;i+=200){const ch=arr.slice(i,i+200);try{await up(ch)}catch(e){if(/logo|PGRST204|schema cache/i.test((e.code||'')+' '+(e.message||''))){await up(ch.map(({logo,...r})=>r))}else throw e}}}
 
 async function run(fn,ok){try{await fn();await load();await syncPortal();if(ok)msg(ok);return true}catch(e){msg(mapErr(e));return false}}
 
