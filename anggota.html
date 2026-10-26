@@ -93,7 +93,7 @@ ${P.wa?`<a class="wa" target="_blank" rel="noopener" href="https://wa.me/${wal(P
  $('#f').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),fm=$('#fm'),bt=$('#sb');bt.disabled=true;bt.textContent='Mengirim…';fm.innerHTML='';
   try{let b=await shrink(f.get('foto'),900,.6);if(b.length>380000)b=await shrink(f.get('foto'),640,.5);if(b.length>380000)throw new Error('Foto terlalu besar. Coba foto/screenshot yang lebih kecil.');
    {const {error:er}=await sb.rpc('kirim_bukti',{p_token:TK,p_v:+f.get('v'),p_tgl:f.get('tgl'),p_m:f.get('m'),p_bukti:b});if(er)throw er}
-   e.target.reset();fm.innerHTML='<div class="ok">✓ Terima kasih. Bukti transfer terkirim dan menunggu konfirmasi pengurus. Muat ulang halaman nanti untuk melihat statusnya di Riwayat iuran.</div>';bt.disabled=false;bt.textContent='Kirim bukti transfer'}
+   const nom=+f.get('v'),wl=P.wa?`<a class="wa" target="_blank" rel="noopener" href="https://wa.me/${wal(P.wa)}?text=${encodeURIComponent('Assalamu’alaikum, saya '+P.nama+' sudah mengirim bukti transfer iuran arisan '+P.grup+' sebesar '+rp(nom)+'. Mohon diverifikasi, terima kasih.')}">Beritahu pengurus lewat WhatsApp →</a>`:'';e.target.reset();fm.innerHTML='<div class="ok">✓ Terima kasih. Bukti transfer terkirim dan menunggu konfirmasi pengurus. Muat ulang halaman nanti untuk melihat statusnya di Riwayat iuran.</div>'+wl;bt.disabled=false;bt.textContent='Kirim bukti transfer'}
   catch(x){fm.innerHTML='<div class="err">'+esc((x.code=='P0001'||x.code=='42501')?'Gagal mengirim. Hubungi pengurus arisan.':(x.message||'Gagal mengirim, coba lagi.'))+'</div>';bt.disabled=false;bt.textContent='Kirim bukti transfer'}}}
 load();
 </script>
