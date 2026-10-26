@@ -104,6 +104,19 @@ body.own{--pat:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' w
 .pcard h3{margin:0 0 3px;font:800 16px var(--serif)}.pcard .meta{font-size:11.5px;color:var(--muted)}.pcard .big{font:800 22px var(--serif);margin:12px 0 2px;color:var(--ink)}
 .pcard .acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.pcard .acts button{flex:1 1 auto;padding:9px 10px;font-size:12px}
 .pempty{border:1.5px dashed var(--line);border-radius:18px;padding:18px;text-align:center;color:var(--muted);font-size:12.5px}
+.wbox{max-width:540px;background:radial-gradient(120% 90% at 50% 0%,#2b3190 0%,#0d1230 62%);color:#fff;position:relative;overflow:hidden}.wbox h3{color:#fff;text-align:center;margin:0 0 2px}.wbox .sub2{text-align:center;color:#b9c2ff;font-size:12px;margin:0 0 4px}
+.wstage{height:min(330px,84vw);display:grid;place-items:center;perspective:1300px}
+.wiso{--s:min(290px,74vw);width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d;transform:rotateX(54deg) rotateZ(-38deg)}.wiso>*{position:absolute;inset:0;border-radius:50%}
+.wshadow{transform:translateZ(-42px) scale(1.06);background:#000;filter:blur(20px);opacity:.6}
+.wedge{background:linear-gradient(135deg,#f6c343,#8a5a00)}.wedge.b{background:#4a3000}
+.wtop{transform:translateZ(2px) rotate(0deg);will-change:transform}.wtop svg{width:100%;height:100%;display:block}
+.wgloss{transform:translateZ(3px);background:radial-gradient(circle at 28% 24%,#ffffff66,#ffffff00 52%);pointer-events:none}
+.wiso>.whub{inset:auto;left:50%;top:50%;width:17%;height:17%;margin:-8.5% 0 0 -8.5%;transform:translateZ(14px);background:radial-gradient(circle at 35% 30%,#fff6bf,#f5b301 55%,#a56a00);box-shadow:0 0 0 3px #ffffff40}
+.wiso>.wptr{inset:auto;left:50%;top:-8%;width:13%;height:16%;margin-left:-6.5%;border-radius:0;transform:translateZ(6px);background:linear-gradient(#ff6b6b,#c81d1d);clip-path:polygon(0 0,100% 0,50% 100%)}
+.bulb{animation:wblink 1s ease-in-out infinite alternate}.bulb.o{animation-delay:.5s}@keyframes wblink{from{opacity:.25}to{opacity:1}}
+.wlive{text-align:center;font:800 24px var(--serif);min-height:34px;padding:2px 8px;color:#ffe9a3;letter-spacing:-.3px}.wlive.won{color:#fff;font-size:28px;animation:wpop .5s cubic-bezier(.2,1.6,.4,1)}@keyframes wpop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+.wbox .secondary{background:#ffffff14;border-color:#ffffff30;color:#fff}
+.cf{position:absolute;inset:0;pointer-events:none;overflow:hidden}.cf i{position:absolute;top:-14px;width:8px;height:14px;border-radius:2px;animation:cfall linear forwards}@keyframes cfall{to{top:104%;margin-left:36px;transform:rotate(720deg)}}
 @media(max-width:1050px){.infog,.infog2{grid-template-columns:1fr}}
 /* ===== Layar login: modern, biru + oranye, ilustrasi isometrik 3D ===== */
 #lg{display:none;position:fixed;inset:0;z-index:60;align-items:center;justify-content:center;padding:20px;overflow:auto;--b:#1456d6;--b2:#0a3a9c;--o:#ff8a00;background:radial-gradient(900px 500px at 10% 0%,#dbeaff,transparent 60%),radial-gradient(700px 500px at 100% 100%,#ffe9cc,transparent 60%),#f4f8ff}
@@ -312,9 +325,8 @@ const A=window.A={sq:v=>{q=v;$('#at').innerHTML=arows();lab()},close:()=>$('#mo'
  link:id=>{const m=M(id);if(!m)return;const t='Assalamu’alaikum '+m.nama+', berikut tautan pribadi untuk memantau iuran dan jadwal undian arisan '+D.g.nama+', serta mengirim bukti transfer: '+link(m);navigator.clipboard?.writeText(link(m));const w=wal(m.hp);if(w)window.open('https://wa.me/'+w+'?text='+encodeURIComponent(t),'_blank');else msg('Tautan disalin. Nomor HP belum diisi.')},
  ingat:id=>{const m=M(id);if(!m)return;const p=pt(),k=Math.max(0,D.g.iuran-bayarP(id,p)),t='Assalamu’alaikum '+m.nama+', pengingat iuran arisan '+D.g.nama+' putaran ke-'+p+': kekurangan '+rp(k)+'. Pantau dan kirim bukti transfer di: '+link(m);const w=wal(m.hp);if(w)window.open('https://wa.me/'+w+'?text='+encodeURIComponent(t),'_blank');else{navigator.clipboard?.writeText(t);msg('Pesan disalin. Nomor HP belum diisi.')}},
  kocok:()=>guard(()=>A.kocok2()),kocok2:()=>{const p=pt(),el=D.A.filter(m=>!menang(m.id));if(D.W.some(x=>x.p==p))return msg('Putaran ini sudah ada pemenang');if(!el.length)return msg('Semua anggota sudah pernah menang');
-  const rnd=n=>{const a=new Uint32Array(1),lim=Math.floor(2**32/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%n},win=el[rnd(el.length)];
-  $('#mo').innerHTML=`<div class="box"><h3>Undian putaran ke-${p}</h3><div class="spin" id="sp">…</div><div class="actions" id="sa"></div></div>`;$('#mo').classList.add('on');
-  let i=0;const t=setInterval(()=>{const e=$('#sp');if(!e){clearInterval(t);return}e.textContent=el[i++%el.length].nama;if(i>28){clearInterval(t);e.innerHTML='🏆<br>'+esc(win.nama);$('#sa').innerHTML=`<button class="secondary" data-act="close">Batal</button><button class="primary" id="sv">Simpan pemenang</button>`;$('#sv').onclick=()=>{A.close();A.simpanW(win.id)}}},90)},
+  const rnd=n=>{const a=new Uint32Array(1),lim=Math.floor(2**32/n)*n;do{crypto.getRandomValues(a)}while(a[0]>=lim);return a[0]%n},wi=rnd(el.length);
+  roulette(el,wi,p)},
  manual:()=>guard(()=>A.manual2()),manual2:()=>{const el=D.A.filter(m=>!menang(m.id));if(!el.length)return msg('Semua anggota sudah pernah menang');form('Pilih pemenang manual',[{k:'mid',l:'Pemenang putaran ke-'+pt(),o:el.map(m=>[m.id,m.nama])}],v=>A.simpanW(v.mid))},
  simpanW:mid=>{const m=M(mid),p=pt();if(!m)return;if(D.W.some(x=>x.p==p))return msg('Putaran ini sudah ada pemenang');run(()=>{const o={...base(),p,mid,nama:m.nama,tgl:iso(new Date()),hadiah:pot(),at:new Date().toISOString()},c=cat(m);if(c)o.catatan=c;return ins('undian',o)},'Pemenang putaran ke-'+p+': '+m.nama)},
  bukaGrup:id=>{cur='home';A.pilihGrup(id)},
@@ -392,6 +404,30 @@ V.semua=()=>{const rowsG=G.map(gg=>{const ms=ALL.A.filter(x=>x.gid==gg.id&&x.akt
  <article class="card pad"><div class="panelhead"><div><h2>Terkumpul per paket</h2><p>Dibanding target putaran berjalan</p></div></div><div class="bars">${rowsG.map(r=>`<div class="bc" title="${esc(r.g.nama)} · ${rp(r.col)}"><em>${r.col?sh(r.col).replace('Rp ',''):'0'}</em><i style="height:${Math.max(3,(r.tar?Math.min(100,r.col/r.tar*100):0)*.72)}%"></i><small>${esc(String(r.g.nama).slice(0,8))}</small></div>`).join('')}</div></article></section>
  ${grp}
  <div class="card pad"><div class="panelhead"><div><h2>Belum lunas di semua paket</h2><p>${nb} anggota perlu ditagih</p></div></div>${nb?tbl(['Anggota','Paket','Kurang',''],rowsG.flatMap(r=>r.bel.map(b=>`<tr><td><div class="person"><span class="miniava">${esc(ini(b.m.nama))}</span><span><b>${esc(b.m.nama)}</b><small>${esc(b.m.hp||'-')}</small></span></div></td><td>${esc(r.g.nama)}</td><td class="sisa">${rp(b.k)}</td><td><button class="linkbtn" data-act="pakGo" data-id="${r.g.id}|anggota">Buka</button></td></tr>`)).join('')):'<div class="empty">🎉 Semua anggota di semua paket sudah lunas.</div>'}</div>`};
+/* ===== Roda undian 3D isometrik ===== */
+const WCOL=['#ef4444','#f97316','#facc15','#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899'];
+let WSND=(()=>{try{return localStorage.getItem('arisan_snd')!=='0'}catch(e){return true}})(),WAC=null;
+function wtick(){if(!WSND)return;try{WAC=WAC||new(window.AudioContext||window.webkitAudioContext)();const o=WAC.createOscillator(),g=WAC.createGain(),t=WAC.currentTime;o.type='triangle';o.frequency.value=850+Math.random()*250;g.gain.setValueAtTime(.05,t);g.gain.exponentialRampToValueAtTime(.0001,t+.05);o.connect(g);g.connect(WAC.destination);o.start(t);o.stop(t+.06)}catch(e){}}
+function wheelSvg(el){const n=el.length,R=153,a=360/n,P=(r,d)=>{const t=d*Math.PI/180;return[+(r*Math.sin(t)).toFixed(2),+(-r*Math.cos(t)).toFixed(2)]},cs=el.map((_,i)=>WCOL[i%8]);
+ if(n>2&&cs[n-1]==cs[0])cs[n-1]=WCOL[(n+2)%8];
+ const mx=n<=8?14:n<=16?11:n<=30?8:0,fs=Math.max(5,Math.min(16,2*Math.PI*.7*R/n*.6)),nm=(s,k)=>s.length>k?s.slice(0,k-1)+'…':s;
+ let s=`<svg viewBox="-170 -170 340 340"><defs><radialGradient id="wg"><stop offset="62%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".3"/></radialGradient></defs><circle r="168" fill="#b8860b"/><circle r="166" fill="#f6c343"/><circle r="155" fill="#7a4d00"/>`;
+ el.forEach((m,i)=>{const [x1,y1]=P(R,i*a),[x2,y2]=P(R,(i+1)*a),c=(i+.5)*a,lab=mx?nm(String(m.nama||''),mx):ini(m.nama);
+  s+=n==1?`<circle r="${R}" fill="${cs[i]}"/>`:`<path d="M0 0L${x1} ${y1}A${R} ${R} 0 ${a>180?1:0} 1 ${x2} ${y2}Z" fill="${cs[i]}" stroke="#fff" stroke-opacity=".75" stroke-width="1.2"/>`;
+  s+=`<text transform="rotate(${(c-90).toFixed(2)})" x="${(R*.93).toFixed(1)}" y="${(fs*.35).toFixed(1)}" text-anchor="end" font-size="${fs.toFixed(1)}" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:#0007;stroke-width:2.2px;font-family:'Plus Jakarta Sans',system-ui,sans-serif">${esc(lab)}</text>`});
+ for(let i=0;i<28;i++){const [x,y]=P(160.5,i*360/28);s+=`<circle cx="${x}" cy="${y}" r="2.6" fill="#fffbe0" class="bulb${i%2?' o':''}"/>`}
+ return s+`<circle r="${R}" fill="url(#wg)"/></svg>`}
+function confetti(box){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const f=document.createElement('div');f.className='cf';f.innerHTML=Array.from({length:52},(_,i)=>`<i style="left:${(Math.random()*100).toFixed(1)}%;background:${WCOL[i%8]};animation-delay:${(Math.random()*.7).toFixed(2)}s;animation-duration:${(2.2+Math.random()*1.6).toFixed(2)}s;transform:rotate(${Math.floor(Math.random()*360)}deg)"></i>`).join('');box.appendChild(f);setTimeout(()=>f.remove(),4800)}
+function roulette(el,wi,p){const n=el.length,a=360/n,win=el[wi],red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ $('#mo').innerHTML=`<div class="box wbox"><h3>Undian putaran ke-${p}</h3><p class="sub2">${n} anggota ikut diundi · <a href="#" id="wm" style="color:#ffd76a;text-decoration:none">${WSND?'🔊 suara aktif':'🔇 suara mati'}</a></p><div class="wstage"><div class="wiso"><div class="wshadow"></div>${Array.from({length:10},(_,i)=>`<div class="wedge${i==9?' b':''}" style="transform:translateZ(${-i*2-1}px)"></div>`).join('')}<div class="wtop" id="wt">${wheelSvg(el)}</div><div class="wgloss"></div><div class="whub"></div><div class="wptr"></div></div></div><div class="wlive" id="wl">Memutar…</div><div class="actions" id="sa"><button type="button" class="secondary" data-act="close">Batal</button></div></div>`;
+ $('#mo').classList.add('on');
+ $('#wm').onclick=e=>{e.preventDefault();WSND=!WSND;try{localStorage.setItem('arisan_snd',WSND?'1':'0')}catch(x){}e.target.textContent=WSND?'🔊 suara aktif':'🔇 suara mati'};
+ const top=$('#wt'),k=red?0:6+Math.floor(Math.random()*3),Rt=360*k-(wi+.5)*a+(Math.random()-.5)*a*.7,dur=red?10:6800;let last=-1,done=false,raf=0;
+ const ang=()=>{const m=getComputedStyle(top).transform;if(!m||m=='none')return 0;const v=m.match(/\(([^)]+)\)/)[1].split(',').map(Number);return Math.atan2(v[1],v[0])*180/Math.PI};
+ const loop=()=>{if(done||!$('#wt'))return;const i=Math.min(n-1,Math.floor((((-ang()%360)+360)%360)/a)),l=$('#wl');if(i!==last&&l){last=i;l.textContent=el[i].nama;wtick()}raf=requestAnimationFrame(loop)};
+ const finish=()=>{if(done)return;done=true;cancelAnimationFrame(raf);const b=$('#mo .wbox'),l=$('#wl');if(!b||!l)return;l.textContent='🏆 '+win.nama;l.classList.add('won');$('#sa').innerHTML=`<button type="button" class="secondary" data-act="close">Batal</button><button type="button" class="primary" id="sv">Simpan pemenang</button>`;$('#sv').onclick=()=>{A.close();A.simpanW(win.id)};confetti(b)};
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{top.style.transition=`transform ${dur}ms cubic-bezier(.12,.62,.08,1)`;top.style.transform=`translateZ(2px) rotate(${Rt.toFixed(2)}deg)`;loop()}));
+ top.addEventListener('transitionend',finish,{once:true});setTimeout(finish,dur+500)}
 function pjInfo(c,sum){const seg=[{l:'Aktif',v:c('aktif'),c:'var(--green)'},{l:'Menunggu',v:c('menunggu'),c:'#ff8a00'},{l:'Berakhir',v:c('berakhir'),c:'#e5484d'},{l:'Nonaktif',v:c('nonaktif'),c:'#9aa8c4'}],m=[];
  for(let i=5;i>=0;i--){const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);const k=iso(d).slice(0,7);m.push([d.toLocaleDateString('id-ID',{month:'short'}),sum(r=>String(r.tgl).startsWith(k))])}
  const mx=Math.max(...m.map(a=>a[1]),1);
